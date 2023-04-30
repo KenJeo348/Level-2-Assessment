@@ -1,5 +1,5 @@
 """Component 1 (Main Menu)
-Based on 01_main_menu_v1
+Based on 01_main_me6nu_v1
 Added a dictionary of the pre-exiting
 monster cards to the program."""
 
