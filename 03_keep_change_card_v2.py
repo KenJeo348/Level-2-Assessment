@@ -1,7 +1,7 @@
-"""Component 2 (Add Combo)
-First version of 'Add Card' Component
-Allows player to add a new card.
-Built on top of 'Main Menu' Component.
+"""Component 3 (Keep or Change)
+Displays the card information,
+and then allows user to choose
+to keep or change the details.
 """
 
 
@@ -38,19 +38,44 @@ def add_card(cards_roster):
     monster_name = eg.enterbox("Name of Monster:", "Add Card")
     cards_roster[monster_name] = {}
 
-    monster_strength = eg.integerbox("Monster Strength level:", "Add Card")
+    monster_strength = eg.integerbox("Monster Strength level:", "Add Card"
+                                     , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Strength"] = monster_strength
 
-    monster_speed = eg.integerbox("Monster Speed level:", "Add Card")
+    monster_speed = eg.integerbox("Monster Speed level:", "Add Card"
+                                  , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Speed"] = monster_speed
 
-    monster_stealth = eg.integerbox("Monster Stealth level", "Add Card")
+    monster_stealth = eg.integerbox("Monster Stealth level", "Add Card"
+                                    , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Stealth"] = monster_stealth
 
-    monster_cunning = eg.integerbox("Monster Cunning level", "Add Card")
+    monster_cunning = eg.integerbox("Monster Cunning level", "Add Card"
+                                    , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Cunning"] = monster_cunning
 
-    print(cards_roster)
+    keep_change_card(cards_roster, monster_name)
+
+
+def keep_change_card(cards_roster_, monster_name_):
+    card_information = ""
+
+    for details in cards_roster_[monster_name_]:
+        monster_details = f"{details}: " \
+                          f"{cards_roster_[monster_name_][details]}\n"
+        card_information += monster_details
+
+    check_monster_information = eg.buttonbox(f"Monster: Information\n"
+                                             f"Monster Name: {monster_name_}\n"
+                                             f"{card_information}",
+                                             "Check Monster Information",
+                                             choices=["Keep", "Change"])
+
+    if check_monster_information == "Change":
+        print("User wants to keep the monster details.")
+
+    elif check_monster_information == "Keep":
+        print("User wants to keep the monster details.")
 
 
 # Main Routine

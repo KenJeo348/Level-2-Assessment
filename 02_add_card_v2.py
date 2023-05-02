@@ -1,7 +1,7 @@
 """Component 2 (Add Combo)
-First version of 'Add Card' Component
-Allows player to add a new card.
-Built on top of 'Main Menu' Component.
+Based on 02_add_card_v1
+Added boundaries to the integers
+so that answer is between 1-25.
 """
 
 
@@ -38,19 +38,21 @@ def add_card(cards_roster):
     monster_name = eg.enterbox("Name of Monster:", "Add Card")
     cards_roster[monster_name] = {}
 
-    monster_strength = eg.integerbox("Monster Strength level:", "Add Card")
+    monster_strength = eg.integerbox("Monster Strength level:", "Add Card"
+                                     , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Strength"] = monster_strength
 
-    monster_speed = eg.integerbox("Monster Speed level:", "Add Card")
+    monster_speed = eg.integerbox("Monster Speed level:", "Add Card"
+                                  , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Speed"] = monster_speed
 
-    monster_stealth = eg.integerbox("Monster Stealth level", "Add Card")
+    monster_stealth = eg.integerbox("Monster Stealth level", "Add Card"
+                                    , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Stealth"] = monster_stealth
 
-    monster_cunning = eg.integerbox("Monster Cunning level", "Add Card")
+    monster_cunning = eg.integerbox("Monster Cunning level", "Add Card"
+                                    , lowerbound=1, upperbound=25)
     cards_roster[monster_name]["Cunning"] = monster_cunning
-
-    print(cards_roster)
 
 
 # Main Routine
