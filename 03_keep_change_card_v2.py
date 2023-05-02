@@ -9,10 +9,10 @@ import easygui as eg
 
 
 def main_menu(cards_roll_):
-    while True:
-        menu_choice = eg.buttonbox("Welcome to Monster Cards!\nPlease choose "
+    while True:        menu_choice = eg.buttonbox("Welcome to Monster Cards!\nPlease choose "
                                    "from below:", "Main Menu",
                                    choices=["Add Card",
+
                                             "Delete Card",
                                             "Find Card",
                                             "Output Cards",
@@ -35,26 +35,31 @@ def main_menu(cards_roll_):
 
 
 def add_card(cards_roster):
-    monster_name = eg.enterbox("Name of Monster:", "Add Card")
-    cards_roster[monster_name] = {}
+    while True:
+        print(cards_roster)
+        monster_name = eg.enterbox("Name of Monster:", "Add Card")
 
-    monster_strength = eg.integerbox("Monster Strength level:", "Add Card"
-                                     , lowerbound=1, upperbound=25)
-    cards_roster[monster_name]["Strength"] = monster_strength
+        monster_strength = eg.integerbox("Monster Strength level:", "Add Card"
+                                         , lowerbound=1, upperbound=25)
 
-    monster_speed = eg.integerbox("Monster Speed level:", "Add Card"
-                                  , lowerbound=1, upperbound=25)
-    cards_roster[monster_name]["Speed"] = monster_speed
+        monster_speed = eg.integerbox("Monster Speed level:", "Add Card"
+                                      , lowerbound=1, upperbound=25)
 
-    monster_stealth = eg.integerbox("Monster Stealth level", "Add Card"
-                                    , lowerbound=1, upperbound=25)
-    cards_roster[monster_name]["Stealth"] = monster_stealth
+        monster_stealth = eg.integerbox("Monster Stealth level", "Add Card"
+                                        , lowerbound=1, upperbound=25)
 
-    monster_cunning = eg.integerbox("Monster Cunning level", "Add Card"
-                                    , lowerbound=1, upperbound=25)
-    cards_roster[monster_name]["Cunning"] = monster_cunning
+        monster_cunning = eg.integerbox("Monster Cunning level", "Add Card"
+                                        , lowerbound=1, upperbound=25)
 
-    keep_change_card(cards_roster, monster_name)
+        cards_roster[monster_name] = {"Strength": monster_strength,
+                                      "Speed": monster_speed,
+                                      "Stealth": monster_stealth,
+                                      "Cunning": monster_cunning}
+
+        returned_keep_change = keep_change_card(cards_roster, monster_name)
+
+        if returned_keep_change == "Keep":
+            break
 
 
 def keep_change_card(cards_roster_, monster_name_):
@@ -72,10 +77,11 @@ def keep_change_card(cards_roster_, monster_name_):
                                              choices=["Keep", "Change"])
 
     if check_monster_information == "Change":
-        print("User wants to keep the monster details.")
+        del cards_roster_[monster_name_]
+        return "Change"
 
     elif check_monster_information == "Keep":
-        print("User wants to keep the monster details.")
+        return "Keep"
 
 
 # Main Routine
