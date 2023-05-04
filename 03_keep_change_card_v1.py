@@ -2,6 +2,7 @@
 Displays the card information,
 and then allows user to choose
 to keep or change the details.
+Built on top of 'Add Card' component.
 """
 
 

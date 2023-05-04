@@ -1,8 +1,8 @@
 import easygui
 
 
-number_list = [1, 2, 3]
-easygui.choicebox("Yeah", "Test", choices=[])
+number_list = ["One", "Two", "Three", "Four", "Five", "Six", "Seven"]
+easygui.buttonbox("Yeah", "Test", choices=number_list)
 
 """something = easygui.enterbox("Say something")
 
