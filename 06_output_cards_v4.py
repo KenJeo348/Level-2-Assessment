@@ -1,7 +1,6 @@
-"""All components are finished
-Developing the final code as a whole
-Improving exit system component
-Built on top of 'Output cards component'
+"""Component 6 (Output Cards)
+Trialing for 'Output Cards' component
+Instead
 """
 
 import easygui as eg
@@ -25,10 +24,7 @@ def main_menu(cards_roll_):
         elif menu_choice == "Output Cards":
             output_cards(cards_roll_)
         elif menu_choice == "Exit System":
-            exit_system = eg.buttonbox("Would you like to exit the program:",
-                                       "Exit system", choices=["Yes", "No"])
-            if exit_system == "Yes":
-                eg.msgbox("Thank you for using our program!", "Farewell")
+            print("Proceed to 'Exit System' function/component.")
             break
 
 
@@ -36,8 +32,6 @@ def add_card(card_roster):
 
     while True:
         monster_name = eg.enterbox("Name of Monster:", "Add Card")
-        if monster_name is None:
-            monster_name = "Name Not Entered"
         monster_strength = eg.integerbox("Monster Strength level:", "Add Card",
                                          lowerbound=1, upperbound=25)
         monster_speed = eg.integerbox("Monster Speed level:", "Add Card",
@@ -46,16 +40,10 @@ def add_card(card_roster):
                                         lowerbound=1, upperbound=25)
         monster_cunning = eg.integerbox("Monster Cunning level", "Add Card",
                                         lowerbound=1, upperbound=25)
-
         card_roster[monster_name] = {"Strength": monster_strength,
                                      "Speed": monster_speed,
                                      "Stealth": monster_stealth,
                                      "Cunning": monster_cunning}
-
-        for stat in card_roster[monster_name].keys():
-            if card_roster[monster_name][stat] is None:
-                card_roster[monster_name][stat] = 0
-
         returned_keep_change = keep_change_card(card_roster, monster_name)
 
         if returned_keep_change == "Keep":
@@ -106,19 +94,18 @@ def find_card(card_roster):
 
 
 def output_cards(card_roster):
-    format_symbol = "="
-    format_sides = format_symbol * 3
+    final_output = ""
 
-    for monster_name, monster_stats in card_roster.items():
-        print(format_symbol * (len(monster_name) + 6))
-        print(f"{format_sides}{monster_name}{format_sides}")
-        print(format_symbol * (len(monster_name) + 6))
+    for monster_name in card_roster:
+        card_info = f"-={monster_name.upper()}=-\n"
         total_stat_points = 0
 
-        for key in monster_stats:
-            print(f"-{key}: {monster_stats[key]}")
-            total_stat_points += monster_stats[key]
-        print(f"*Total Stat: {total_stat_points}\n")
+        for key in card_roster[monster_name]:
+            card_info += f"{key}:{card_roster[monster_name][key]}, "
+            total_stat_points += card_roster[monster_name][key]
+        final_output += f"{card_info}\n" \
+                        f"Total Stat for {monster_name}: {total_stat_points}\n\n"
+    eg.msgbox(final_output, "Title")
 
 
 # Main Routine
