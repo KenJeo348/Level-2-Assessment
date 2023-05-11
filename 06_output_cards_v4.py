@@ -1,6 +1,7 @@
 """Component 6 (Output Cards)
 Trialing for 'Output Cards' component
-Instead
+Further development on 06_output_cards_v3
+Added formatting for better readability.
 """
 
 import easygui as eg

@@ -1,6 +1,7 @@
 """Component 6 (Output Cards)
 Trialing for 'Output Cards' component
-Instead
+Instead of printing the output in the
+python console display it using easygui.
 """
 
 import easygui as eg
