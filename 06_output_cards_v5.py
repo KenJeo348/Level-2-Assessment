@@ -97,18 +97,18 @@ def find_card(card_roster):
 def output_cards(card_roster):
     format_symbol = "="
     format_sides = format_symbol * 3
-    output_stats = ""
 
-    for monster_name, monster_stats in card_roster.items():
-        print(format_symbol * (len(monster_name) + 6))
-        print(f"{format_sides}{monster_name}{format_sides}")
-        print(format_symbol * (len(monster_name) + 6))
+    for monster_name in card_roster:
+
+        print(f"={monster_name}=")
+
         total_stat_points = 0
+        output_stats = ""
 
-        for key in monster_stats:
-            card_stats = f"-{key}: {monster_stats[key]}"
+        for key in card_roster[monster_name]:
+            card_stats = f"-{key}:{card_roster[monster_name][key]} "
             output_stats += card_stats
-            total_stat_points += monster_stats[key]
+            total_stat_points += card_roster[monster_name][key]
         print(output_stats)
 
         print(f"*Total Stat: {total_stat_points}\n")

@@ -98,7 +98,8 @@ def output_cards(card_roster):
     final_output = ""
 
     for monster_name in card_roster:
-        card_info = f"-{monster_name.upper()}-\n"
+        card_info = f"---------------------{monster_name.upper()}-----------" \
+                    f"----------\n"
         total_stat_points = 0
 
         for key in card_roster[monster_name]:
