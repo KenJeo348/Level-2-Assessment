@@ -1,14 +1,18 @@
 """Final version of the Monster Card program
-Assembled with all the updated versions of the
-components that have gone through testing and
-trialling.
+Assembled with all the updated versions of the components
+that have gone through testing and trialling.
+This is a program that allows the user to add their own
+monster cards or modify the existing monster cards.
 
+Created by Kenny Jeong
+16/05/2023
 """
 
 import easygui as eg
 
 
 def main_menu(cards_roll_):
+    output_cards(cards_roll_)
     while True:
         menu_choice = eg.buttonbox("Welcome to Monster Cards!\nPlease choose "
                                    "from below:", "Main Menu",
@@ -90,6 +94,8 @@ def delete_card(card_roster):
         card_names.append(names)
     card_to_delete = eg.choicebox("Name of monster you want to delete:",
                                   "Delete Card", choices=card_names)
+    if card_to_delete is None:
+        return
     del card_roster[card_to_delete]
     eg.msgbox(f"'{card_to_delete}' has been deleted", "Card Deleted")
 
@@ -100,6 +106,8 @@ def find_card(card_roster):
         card_names.append(names)
     wanted_card = eg.choicebox("Name of monster you are looking for:",
                                "Find Card", choices=card_names)
+    if wanted_card is None:
+        return
     returned_keep_change = keep_change_card(card_roster, wanted_card)
 
     if returned_keep_change == "Change":
