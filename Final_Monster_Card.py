@@ -116,34 +116,46 @@ def keep_change_card(card_roster_, monster_name_):
         return "Keep"
 
 
-
+# A function that allows the user to choose a function and then delete it
 def delete_card(card_roster):
-
+    # Make a list and store the names of all the existing monster cards
     card_names = []
     for names in card_roster.keys():
         card_names.append(names)
+    # Use an easygui choice box to let the user choose a monster
     card_to_delete = eg.choicebox("Name of monster you want to delete:",
                                   "Delete Card", choices=card_names)
+    # If the user presses 'Cancel' return to the main menu function.
     if card_to_delete is None:
         return
+    # Remove the card that was selected by the user from the dictionary
     del card_roster[card_to_delete]
     eg.msgbox(f"'{card_to_delete}' has been deleted", "Card Deleted")
 
 
+# A function where the user can find a card and choose to keep or change the
+# details of that card.
 def find_card(card_roster):
+    # Make a list and store the names of all the existing monster cards
     card_names = []
     for names in card_roster.keys():
         card_names.append(names)
+    # Use an easygui choice box to let the user choose a monster
     wanted_card = eg.choicebox("Name of monster you are looking for:",
                                "Find Card", choices=card_names)
+    # If the user presses 'Cancel' return to the main menu function.
     if wanted_card is None:
         return
+    # Proceed to the 'keep_change_card' function.
     returned_keep_change = keep_change_card(card_roster, wanted_card)
 
+    # If the 'keep_change_card' function returns 'Change'
+    # Proceed to the 'add_card' function to allow user to enter new details.
     if returned_keep_change == "Change":
         add_card(card_roster)
 
 
+# A function that displays all the monsters details existing in the dictionary
 def output_cards(card_roster):
     final_output = ""
 
