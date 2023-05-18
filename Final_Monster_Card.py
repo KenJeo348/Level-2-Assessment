@@ -159,20 +159,27 @@ def find_card(card_roster):
 def output_cards(card_roster):
     final_output = ""
 
+    # Storing all names of monsters for the output variable
     for monster_name in card_roster:
         card_info = f"---------------------{monster_name.upper()}-----------" \
                     f"----------\n"
+        # Resetting total stat points to 0 for each monster
         total_stat_points = 0
 
+        # Storing stat details for each monster in the output variable
         for key in card_roster[monster_name]:
             card_info += f"{key}:{card_roster[monster_name][key]}, "
             total_stat_points += card_roster[monster_name][key]
+        # Variable containing string of final output
         final_output += f"{card_info}\n" \
                         f"Total Stat: {total_stat_points}\n\n"
+    # Final output (all monster details) displayed using easygui
     eg.msgbox(final_output, "Title")
 
 
 # Main Routine
+
+# Dictionary containing the pre-existing monster cards
 cards_roll = {
     "Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
     "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21, "Cunning": 19},
