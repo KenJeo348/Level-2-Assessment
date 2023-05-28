@@ -60,8 +60,7 @@ def keep_change_card(cards_roster_, monster_name_):
                           f"{cards_roster_[monster_name_][details]}\n"
         card_information += monster_details
 
-    check_monster_information = eg.buttonbox(f"Monster: Information\n"
-                                             f"Monster Name: {monster_name_}\n"
+    check_monster_information = eg.buttonbox(f"Monster Name: {monster_name_}\n"
                                              f"{card_information}",
                                              "Check Monster Information",
                                              choices=["Keep", "Change"])

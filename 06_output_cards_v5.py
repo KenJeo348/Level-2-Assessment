@@ -100,7 +100,7 @@ def output_cards(card_roster):
 
     for monster_name in card_roster:
 
-        print(f"={monster_name}=")
+        print(f"-----------------[{monster_name}]-----------------")
 
         total_stat_points = 0
         output_stats = ""

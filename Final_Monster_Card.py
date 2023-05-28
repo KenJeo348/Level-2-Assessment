@@ -61,13 +61,17 @@ def add_card(card_roster):
             monster_name = "Name Not Entered"
 
         # Enter the stats (Strength, Speed, Stealth, Cunning) for the monster
-        monster_strength = eg.integerbox("Monster Strength level:", "Add Card",
+        monster_strength = eg.integerbox("Monster Strength level(1-25):",
+                                         "Add Card",
                                          lowerbound=1, upperbound=25)
-        monster_speed = eg.integerbox("Monster Speed level:", "Add Card",
+        monster_speed = eg.integerbox("Monster Speed level(1-25):",
+                                      "Add Card",
                                       lowerbound=1, upperbound=25)
-        monster_stealth = eg.integerbox("Monster Stealth level", "Add Card",
+        monster_stealth = eg.integerbox("Monster Stealth level(1-25):",
+                                        "Add Card",
                                         lowerbound=1, upperbound=25)
-        monster_cunning = eg.integerbox("Monster Cunning level", "Add Card",
+        monster_cunning = eg.integerbox("Monster Cunning level(1-25)",
+                                        "Add Card",
                                         lowerbound=1, upperbound=25)
 
         # Assign the stats entered to the monster, and add to a dictionary.
@@ -102,8 +106,7 @@ def keep_change_card(card_roster_, monster_name_):
         card_information += monster_details
 
     # Display the details of the card, and ask if user wants to keep or change
-    check_monster_information = eg.buttonbox(f"Monster: Information\n"
-                                             f"Monster Name: {monster_name_}\n"
+    check_monster_information = eg.buttonbox(f"Monster Name: {monster_name_}\n"
                                              f"{card_information}",
                                              "Check Monster Information",
                                              choices=["Keep", "Change"])
@@ -157,24 +160,25 @@ def find_card(card_roster):
 
 # A function that displays all the monsters details existing in the dictionary
 def output_cards(card_roster):
-    final_output = ""
-
+    # Separating each set of displayed details
+    print("#"*46, "\n")
     # Storing all names of monsters for the output variable
     for monster_name in card_roster:
-        card_info = f"---------------------{monster_name.upper()}-----------" \
-                    f"----------\n"
+        print(f"-----------------[{monster_name}]-----------------")
         # Resetting total stat points to 0 for each monster
         total_stat_points = 0
+        output_stats = ""
 
         # Storing stat details for each monster in the output variable
         for key in card_roster[monster_name]:
-            card_info += f"{key}:{card_roster[monster_name][key]}, "
+            card_stats = f"-{key}:{card_roster[monster_name][key]} "
+            # Variable containing all the stat values
+            output_stats += card_stats
+            # Summing up stat values for total stat value of the monster
             total_stat_points += card_roster[monster_name][key]
-        # Variable containing string of final output
-        final_output += f"{card_info}\n" \
-                        f"Total Stat: {total_stat_points}\n\n"
-    # Final output (all monster details) displayed using easygui
-    eg.msgbox(final_output, "Title")
+        # Displaying output
+        print(output_stats)
+        print(f"*Total Stat: {total_stat_points}\n")
 
 
 # Main Routine
@@ -191,6 +195,6 @@ cards_roll = {
     "Rotthing": {"Strength": 16, "Speed": 7, "Stealth": 4, "Cunning": 12},
     "Froststep": {"Strength": 14, "Speed": 14, "Stealth": 17, "Cunning": 4},
     "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2},
-}
+    }
 
 main_menu(cards_roll)
